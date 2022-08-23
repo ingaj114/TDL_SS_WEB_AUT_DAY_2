@@ -5,12 +5,20 @@ context("Elements Page", () => {
     beforeEach(() => {
       TextBoxPage.visit();
     });
-
     // Create texbox scenario
-    // fill in textboxes with necessary information
-    // validate the paragraphs
     it("Filling in Text Boxes", () => {
-      // add the necessary steps
+      // fill in textboxes with necessary information
+      TextBoxPage.firstNameField.type("Inga Ju");
+      TextBoxPage.emailField.type("ingaj114@gmail.com");
+      TextBoxPage.currentAddressField.type("Address 1");
+      TextBoxPage.permanentAddress.type("Address 2");
+      TextBoxPage.submit.click();
+      // validate the paragraphs
+      TextBoxPage.output.should("contain", "Inga Ju");
+      TextBoxPage.output.should("contain", "ingaj114@gmail.com");
+      TextBoxPage.output.should("contain", "Address 1")
+      TextBoxPage.output.should("contain", "Address 2")
+
     });
   });
 
