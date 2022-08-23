@@ -1,4 +1,7 @@
+import CheckBoxPage from "../../pageObjects/CheckBoxPage.page";
+import RadioButtonsPage from "../../pageObjects/RadioButtonsPage.page";
 import TextBoxPage from "../../pageObjects/textBoxPage";
+import WebTablesScenariosPage from "../../pageObjects/WebTablesScenarios.page";
 
 context("Elements Page", () => {
   context("Text box scenarios", () => {
@@ -18,45 +21,95 @@ context("Elements Page", () => {
       TextBoxPage.validateEmailField.should("contain", "ingaj114@gmail.com");
       TextBoxPage.validateCurrentAddressField.should("contain", "Address 1")
       TextBoxPage.validatePermamentAddress.should("contain", "Address 2")
-
     });
   });
-
-  context("Check box scenarios", () => {
-    // Create CheckBoxPage page object
-    // Create checkbox scenario 1:
-    // Click the "+"/expand button
-    // Click Notes, React, Angular, General, Excel File.doc
-    // Validate the clicked checkboxes
-
-    // Create checkbox scenario 2:
-    // Click expand button
-    // Click Office
-    // Validate the checked checkboxes
-  });
-
-  context("Radio button scenarios", () => {
+  
+  // Create CheckBoxPage page object
+    context("Check box scenarios", () => {
+      beforeEach(() => {
+        CheckBoxPage.visit();
+      });
+      // Create checkbox scenario 1:
+      it("Check the check box", () => {
+        // Click the "+"/expand button
+        CheckBoxPage.expandPlus.click();
+        // Click Notes, React, Angular, General, Excel File.doc
+        CheckBoxPage.checkNotes.click();
+        CheckBoxPage.checkReact.click();
+        CheckBoxPage.checkAngular.click();
+        CheckBoxPage.checkGeneral.click();
+        CheckBoxPage.checkExcelFile.click();
+        // Validate the clicked checkboxes
+        CheckBoxPage.validate.should("contain","notes");
+        CheckBoxPage.validate.should("contain","react");
+        CheckBoxPage.validate.should("contain","angular");
+        CheckBoxPage.validate.should("contain","general");
+        CheckBoxPage.validate.should("contain","excelFile");
+      });
+   
+      // Create checkbox scenario 2:
+      it("Click the expand button", () => {
+        // Click expand button
+        CheckBoxPage.visit();
+        CheckBoxPage.expandPlus.click();
+        // Click Office
+        CheckBoxPage.checkOffice.click();
+        // Validate the checked checkboxes
+        CheckBoxPage.validate.should("contain","office");
+        CheckBoxPage.validate.should("contain","public");
+        CheckBoxPage.validate.should("contain","private");
+        CheckBoxPage.validate.should("contain","classified");
+        CheckBoxPage.validate.should("contain","general");
+      });
+    });
+      
     // Create RadioButtons page object
-    // Scenario 1:
-    // Click yesButton
-    // validate the message
-    // click impressiveButton
-    // validate the message
-    // noButton - validate that the button exists but is disabled
-  });
-
-  context("Web tables scenarios", () => {
+    context("Radio button scenarios", () => {
+      beforeEach(() => {
+        RadioButtonsPage.visit();
+      });
+      // Scenario 1:
+      it("Click yes button", () => {
+        // Click yesButton
+        RadioButtonsPage.button.click();
+        // validate the message
+        RadioButtonsPage.validate.should("contain", "Yes");
+        // click impressiveButton
+        RadioButtonsPage.impressive.click();
+        // validate the message
+        RadioButtonsPage.validate.should("contain", "Impressive");
+        // noButton - validate that the button exists but is disabled
+        RadioButtonsPage.noButton.should("have.disabled", "True");
+      });
+    });
+    
     // Create WebTables page object
-    // Create scenario 1:
-    // Click add record button
-    // fill in the necessary information
-    // click submit button
-    // search for the user based on previously added information
-    // validate tha the user is visible
+    context("Web tables scenarios", () => {
+      beforeEach(() => {
+        WebTablesScenariosPage.visit();
+      });
+      // Create scenario 1:
+      it("Click button", () => {
+      // Click add record button
+      WebTablesScenariosPage.button.click();
+      // fill in the necessary information
+      WebTablesScenariosPage.addFirstName.type("Inga");
+      WebTablesScenariosPage.addLastName.type("Ju");
+      WebTablesScenariosPage.addEmail.type("ingaj114@gmail.com");
+      WebTablesScenariosPage.addAge.type("29");
+      WebTablesScenariosPage.addSalary.type("2000");
+      WebTablesScenariosPage.addDepartment.type("TDL School");    
+      // click submit button
+      WebTablesScenariosPage.submit.click();
+      // search for the user based on previously added information
 
-    // Create Scenario 2:
-    // Delete all table rows
-    // Validate that we see text - No rows found
+      // validate tha the user is visible
+      
+      // Create Scenario 2:
+      // Delete all table rows
+      // Validate that we see text - No rows found
+
+      })
   });
 
   context("Buttons scenarios", () => {
