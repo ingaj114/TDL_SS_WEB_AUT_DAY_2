@@ -25,10 +25,22 @@ class TextBoxPage extends BasePage {
     return cy.get("#submit")
   }
 
-  static get output() {
-    return cy.get("#output")
+  static get validateFirstName() {
+    return cy.get("#name")
   }
 
+  static get validateEmailField() {
+    return cy.get("#email")
+  }
+
+  static get validateCurrentAddressField() {
+    return cy.get("p[id=currentAddress]")
+  }
+
+  static get validatePermamentAddress() {
+    return cy.get("p[id=permanentAddress]")
+  }
+  
 }
 
 export default TextBoxPage;

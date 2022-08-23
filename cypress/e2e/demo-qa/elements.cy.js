@@ -14,10 +14,10 @@ context("Elements Page", () => {
       TextBoxPage.permanentAddress.type("Address 2");
       TextBoxPage.submit.click();
       // validate the paragraphs
-      TextBoxPage.output.should("contain", "Inga Ju");
-      TextBoxPage.output.should("contain", "ingaj114@gmail.com");
-      TextBoxPage.output.should("contain", "Address 1")
-      TextBoxPage.output.should("contain", "Address 2")
+      TextBoxPage.validateFirstName.should("contain", "Inga Ju");
+      TextBoxPage.validateEmailField.should("contain", "ingaj114@gmail.com");
+      TextBoxPage.validateCurrentAddressField.should("contain", "Address 1")
+      TextBoxPage.validatePermamentAddress.should("contain", "Address 2")
 
     });
   });
